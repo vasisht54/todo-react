@@ -3,13 +3,14 @@ import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo"
 import ThemeContextProvider from './components/ThemeContext';
 import ThemeToggler from './components/ThemeToggler';
+import uuid from 'uuid/v1';
 
 class App extends React.Component {
   state = {
     todos: [
-      {id: 1, content: "Buy parathas"},
-      {id: 2, content: "Clean up the kitchen counter"},
-      {id: 3, content: "Watch 'The Office'"}
+      {id: uuid(), content: "Buy parathas"},
+      {id: uuid(), content: "Clean up the kitchen counter"},
+      {id: uuid(), content: "Watch 'The Office'"}
     ]
   };
 
@@ -23,7 +24,7 @@ class App extends React.Component {
   }
 
   addTodo = (todo) => {
-    todo.id = Math.random();
+    todo.id = uuid();
     let todos = [...this.state.todos, todo];
     this.setState({
       todos
