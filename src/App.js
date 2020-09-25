@@ -1,6 +1,8 @@
 import React from 'react';
-import Todos from "./ui-components/Todos";
-import AddTodo from "./container-components/AddTodo"
+import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo"
+import ThemeContextProvider from './components/ThemeContext';
+import ThemeToggler from './components/ThemeToggler';
 
 class App extends React.Component {
   state = {
@@ -29,12 +31,16 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div className="todo-app container">
-        <h1 className="center red-text">To-do List</h1>
-        <div className="center">Click on an item to delete it</div>
-        <Todos todos = {this.state.todos} deleteTodo = {this.deleteTodo}/>
-        <AddTodo addTodo = {this.addTodo} />
+        <ThemeContextProvider>
+          <h1 className="center red-text">To-do List</h1>
+          <div className="center">Click on an item to delete it</div>
+          <Todos todos = {this.state.todos} deleteTodo = {this.deleteTodo}/>
+          <AddTodo addTodo = {this.addTodo} />
+          <ThemeToggler/>
+        </ThemeContextProvider>
       </div>
     );
   }

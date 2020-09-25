@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ThemeContext } from "./ThemeContext";
 
 class AddTodo extends Component {
     state = {
@@ -26,13 +27,17 @@ class AddTodo extends Component {
         }
     }
 
+    static contextType = ThemeContext;
+
     render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor="add-todo">Add todo:</label>
-                <input onChange={this.handleOnChange} id="add-todo" type="text" value={this.state.content} />
-            </form>
-        )
+      const {isLightTheme, light, dark} = this.context;
+      const theme = isLightTheme ? light : dark;
+      return (
+          <form style ={{background: theme.ui, color: theme.textColor}} onSubmit={this.handleSubmit}>
+              <label htmlFor="add-todo">Add todo:</label>
+              <input style ={{color: theme.textColor}} onChange={this.handleOnChange} id="add-todo" type="text" value={this.state.content} />
+          </form>
+      )
     }
 }
 
