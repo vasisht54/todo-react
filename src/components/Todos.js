@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Todos = ({todos, deleteTodo}) => {
     const {isLightTheme, light, dark} = useContext(ThemeContext);

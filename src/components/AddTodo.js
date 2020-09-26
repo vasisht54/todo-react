@@ -1,29 +1,28 @@
 import React, { Component } from "react";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 class AddTodo extends Component {
     state = {
-        content: ''
+      content: ''
     }
 
     handleOnChange = (e) => {
         this.setState({
-            content: e.target.value
+          content: e.target.value
         })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-        if (this.state.content === '') {
-            alert('Enter something to do!');
+        if (this.state.content.trim() === '') {
+          alert('Enter something to do!');
         }
         else {
-
-            this.props.addTodo(this.state);
-            this.setState({
-                content: ''
-            })
+          this.props.addTodo(this.state);
+          this.setState({
+              content: ''
+          })
         }
     }
 
@@ -34,8 +33,8 @@ class AddTodo extends Component {
       const theme = isLightTheme ? light : dark;
       return (
           <form style ={{background: theme.ui, color: theme.textColor}} onSubmit={this.handleSubmit}>
-              <label htmlFor="add-todo">Add todo:</label>
-              <input style ={{color: theme.textColor}} onChange={this.handleOnChange} id="add-todo" type="text" value={this.state.content} />
+            <label htmlFor="add-todo">Add todo:</label>
+            <input required style ={{color: theme.textColor}} onChange={this.handleOnChange} id="add-todo" type="text" value={this.state.content} />
           </form>
       )
     }

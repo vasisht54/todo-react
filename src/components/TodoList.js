@@ -1,6 +1,6 @@
 import React from 'react';
 import uuid from 'uuid/dist/v1';
-import ThemeContextProvider from './ThemeContext';
+import ThemeContextProvider from '../contexts/ThemeContext';
 import Todos from './Todos';
 import ThemeToggler from './ThemeToggler';
 import AddTodo from './AddTodo';
