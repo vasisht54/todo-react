@@ -1,4 +1,6 @@
-### This is a simple to-do app built with React and Materialize CSS.
+### This is a simple to-do app built with React and Materialize CSS. 
+
+## View deployment [here](https://todo-react-vasisht.netlify.app/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
