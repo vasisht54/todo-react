@@ -1,43 +1,34 @@
-import React, { Component } from "react";
+import React, { useState, useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-class AddTodo extends Component {
-    state = {
-      content: ''
+const AddTodo = (props) => {
+
+  const [content, setContent] = useState('');
+
+  const handleOnChange = (e) => {
+    setContent(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (content.trim() === '') {
+      alert('Enter something to do!');
     }
-
-    handleOnChange = (e) => {
-        this.setState({
-          content: e.target.value
-        })
+    else {
+      props.addTodo({content});
+      setContent('');
     }
+  }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
 
-        if (this.state.content.trim() === '') {
-          alert('Enter something to do!');
-        }
-        else {
-          this.props.addTodo(this.state);
-          this.setState({
-              content: ''
-          })
-        }
-    }
-
-    static contextType = ThemeContext;
-
-    render() {
-      const {isLightTheme, light, dark} = this.context;
-      const theme = isLightTheme ? light : dark;
-      return (
-          <form style ={{background: theme.ui, color: theme.textColor}} onSubmit={this.handleSubmit}>
-            <label htmlFor="add-todo">Add todo:</label>
-            <input required style ={{color: theme.textColor}} onChange={this.handleOnChange} id="add-todo" type="text" value={this.state.content} />
-          </form>
-      )
-    }
-}
+  const {isLightTheme, light, dark} = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
+  return (
+      <form style ={{background: theme.ui, color: theme.textColor}} onSubmit={handleSubmit}>
+        <label htmlFor="add-todo">Add todo:</label>
+        <input required style ={{color: theme.textColor}} onChange={handleOnChange} id="add-todo" type="text" value={content} />
+      </form>
+  )
+};
 
 export default AddTodo;
