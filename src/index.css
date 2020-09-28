@@ -61,3 +61,7 @@ body {
   max-width: 1000px;
   color: #eee;
 }
+
+div.collection-item:hover {
+  text-decoration: line-through;
+}

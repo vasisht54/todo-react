@@ -32,10 +32,10 @@ const TodoList = () => {
     <div className="todo-app container">
         <ThemeContextProvider>
           <h1 className="center red-text">To-do List</h1>
+          <ThemeToggler/>
           <div className="center">Click on an item to delete it</div>
           <Todos todos = {todos} deleteTodo = {deleteTodo}/>
           <AddTodo addTodo = {addTodo} />
-          <ThemeToggler/>
         </ThemeContextProvider>
       </div>
    );
