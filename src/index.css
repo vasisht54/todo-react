@@ -44,3 +44,20 @@ div.collection-item {
 .container {
   width: 40%;
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #363537;
+}
+.App{
+  /* background: #4c2a4c; */
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
+  color: #eee;
+}
