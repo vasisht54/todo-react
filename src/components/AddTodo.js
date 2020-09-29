@@ -28,7 +28,7 @@ const AddTodo = (props) => {
   return (
       <form style ={{background: theme.ui, color: theme.textColor}} onSubmit={handleSubmit}>
         <label htmlFor="add-todo">Add todo:</label>
-        <input required style ={{color: theme.textColor}} onChange={handleOnChange} id="add-todo" type="text" value={content} />
+        <input placeholder="'Buy Samosas'" required style ={{color: theme.textColor}} onChange={handleOnChange} id="add-todo" type="text" value={content} />
       </form>
   )
 };
