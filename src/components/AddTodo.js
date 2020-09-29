@@ -15,7 +15,9 @@ const AddTodo = (props) => {
       alert('Enter something to do!');
     }
     else {
-      props.addTodo({content});
+      props.dispatch({type: 'ADD_TODO', todo: {
+        content
+      }});
       setContent('');
     }
   }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 
-const Todos = ({todos, deleteTodo}) => {
+const Todos = ({todos, dispatch}) => {
     const {isLightTheme, light, dark} = useContext(ThemeContext);
     const theme = isLightTheme ? light : dark;
 
@@ -9,7 +9,7 @@ const Todos = ({todos, deleteTodo}) => {
         todos.map(todo => {
             return (
                 <div style = {{background: theme.ui, color: theme.textColor}} className="collection-item" key = {todo.id}>
-                    <span onClick = {() => deleteTodo(todo.id)}>{todo.content}</span>
+                    <span onClick = {() => dispatch({type: 'DELETE_TODO', id: todo.id})}>{todo.content}</span>
                 </div>
             )
         })

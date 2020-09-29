@@ -1,32 +1,20 @@
-import React from 'react';
-import uuid from 'uuid/dist/v1';
+import React, { useReducer, useEffect } from 'react';
 import ThemeContextProvider from '../contexts/ThemeContext';
 import Todos from './Todos';
 import ThemeToggler from './ThemeToggler';
 import AddTodo from './AddTodo';
+import {TodoReducer} from '../reducers/TodoReducer';
 
 const TodoList = () => {
-  const [todos, setTodo] = React.useState([
-      {id: uuid(), content: "Buy parathas"},
-      {id: uuid(), content: "Clean up the kitchen counter"},
-      {id: uuid(), content: "Watch 'The Office'"}
-  ]);
 
-  const deleteTodo = (id) => {
-    const updatedTodos = todos.filter(todo => {
-      return todo.id !== id;
-    });
-    setTodo([
-      ...updatedTodos
-    ])
-  };
+  const [todos, dispatch] = useReducer(TodoReducer, [], () => {
+    const localData = localStorage.getItem('todos');
+    return localData ? JSON.parse(localData) : [];
+  });
 
-  const addTodo = (todo) => {
-    todo.id = uuid();
-    setTodo([
-      ...todos, todo
-    ])
-  };
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
 
   return ( 
     <div className="todo-app container">
@@ -34,8 +22,8 @@ const TodoList = () => {
           <h1 className="center red-text">To-do List</h1>
           <ThemeToggler/>
           <div className="center">Click on an item to delete it</div>
-          <Todos todos = {todos} deleteTodo = {deleteTodo}/>
-          <AddTodo addTodo = {addTodo} />
+          <Todos todos = {todos} dispatch = {dispatch}/>
+          <AddTodo dispatch = {dispatch} />
         </ThemeContextProvider>
       </div>
    );
